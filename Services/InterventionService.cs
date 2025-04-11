@@ -1,5 +1,6 @@
 ﻿using GestionIntervention.Models.Dtos;
 using GestionIntervention.Models.Entities;
+using GestionIntervention.Repositories;
 using GestionIntervention.Repositories.Interfaces;
 using GestionIntervention.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -11,10 +12,10 @@ namespace GestionIntervention.Services
         private readonly IService<Client> _clientService;
         private readonly IService<TypeIntervention> _typeInterventionService;
         private readonly TechnicienService _technicienService;
-        private readonly IDataAccess<Intervention> _dataAccess;
+        private readonly InterventionDataAccess _dataAccess;
 
         public InterventionService (
-            IDataAccess<Intervention> dataAccess,
+            InterventionDataAccess dataAccess,
             IService<Client> clientService,
             IService<TypeIntervention> typeInterventionService,
             TechnicienService technicienService
@@ -67,7 +68,11 @@ namespace GestionIntervention.Services
             await CreateAsync(intervention);
 
             return intervention;
+        }
 
+        public async Task<List<Intervention>> GetByTechnicienIdAsync(string technicienId)
+        {
+            return await _dataAccess.GetByTechnicienId(technicienId);
         }
     }
 }

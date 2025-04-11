@@ -30,6 +30,7 @@ builder.Services.AddScoped<IDataAccess<Client>, ClientDataAccess>();
 builder.Services.AddScoped<IDataAccess<Intervention>, InterventionDataAccess>();
 builder.Services.AddScoped<IDataAccess<TypeIntervention>, TypeInterventionDataAccess>();
 builder.Services.AddScoped<TechnicienDataAccess>();
+builder.Services.AddScoped<InterventionDataAccess>();
 
 builder.Services.AddScoped<IService<Client>, ClientService>();
 builder.Services.AddScoped<IService<TypeIntervention>, TypeInterventionService>();

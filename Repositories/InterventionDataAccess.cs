@@ -40,5 +40,12 @@ namespace GestionIntervention.Repositories
                 await _context.SaveChangesAsync();
             }
         }
+
+        public async Task<List<Intervention>> GetByTechnicienId(string id)
+        {
+            return await _context.Interventions
+                .Where(i => i.Techniciens.Any(t => t.Id == id))
+                .ToListAsync();
+        }
     }
 }
